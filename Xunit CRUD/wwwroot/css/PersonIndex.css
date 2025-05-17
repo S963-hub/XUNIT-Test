@@ -1,0 +1,128 @@
+﻿/* === TABLE FOUNDATION === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: "Segoe UI", Arial, sans-serif;
+    table-layout: fixed; /* keeps columns even */
+}
+
+/* === HEADER === */
+thead th {
+    background: #2d3748; /* dark slate */
+    color: #fff;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    position: sticky; /* stays visible when you scroll */
+    top: 0;
+    z-index: 1;
+}
+
+/* === BODY CELLS (they’re <th> in your markup, so target tbody th) === */
+tbody th {
+    padding: 10px 16px;
+    border-bottom: 1px solid #cbd5e0; /* light divider */
+    font-weight: 400;
+    color: #1a202c;
+    background: #fff;
+    word-wrap: break-word;
+}
+
+/* zebra-striping without touching HTML */
+tbody tr:nth-of-type(odd) th {
+    background: #f7fafc;
+}
+
+/* row hover */
+tbody tr:hover th {
+    background: #e2e8f0;
+}
+
+/* center the Age column (4th) */
+tbody th:nth-child(4) {
+    text-align: center;
+}
+
+
+
+
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+    margin-bottom: 1rem;
+}
+
+.flex1 {
+    flex: 1 1 200px; /* Responsive kırılım için */
+    display: flex;
+    align-items: center;
+    min-width: 150px;
+}
+
+select,
+input[type="search"] {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+
+    select:focus,
+    input[type="search"]:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+    }
+
+button {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-weight: 500;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 0.5rem;
+}
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+a[asp-controller][asp-action] {
+    padding: 0.5rem 1rem;
+    background-color: #6c757d;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+    a[asp-controller][asp-action]:hover {
+        background-color: #5a6268;
+    }
+
+/* Mobil görünüm için */
+@media (max-width: 600px) {
+    .flex {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .flex1 {
+        width: 100%;
+    }
+}

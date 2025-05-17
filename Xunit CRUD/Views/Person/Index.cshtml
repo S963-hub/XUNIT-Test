@@ -1,0 +1,80 @@
+﻿@using ServiceContracts.Dto
+@model IEnumerable<PersonResponse>
+@{
+	ViewBag.title = "Crud Demo";
+	
+}
+
+	<!DOCTYPE html>
+	<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<link rel="stylesheet" href="~/css/PersonIndex.css" asp-append-version="true" />
+	</head>
+
+	<body>
+
+	<form asp-controller="Person" asp-action="Index" method="get">
+		<div class="flex">
+			<div class="flex1">
+				<select name="SearchBy">
+					@foreach (var fields in ViewBag.Fields)
+					{
+						<option value="@fields.Key">@fields.Value</option>
+					}
+				</select>
+			</div>
+
+			<div class="flex1">
+				<input type="search" placeholder="Search" name="SearchString"/>
+			</div>
+
+			<div class="flex1">
+				<button>Search</button>
+				<a asp-controller="Person" asp-action="Index">clear all</a>
+			</div>
+		</div>
+	</form>
+	<table>
+		<thead>
+			<tr>
+				<th>Person Name</th>
+				<th>Email</th>
+				<th>Date of Birth</th>
+				<th>Age</th>
+				<th>Gender</th>
+				<th>Country</th>
+				<th>Adress</th>
+				<th>Receive News Letters</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			@foreach (PersonResponse Person in Model)
+			{
+				<tr>
+					<th>@Person.PersonName</th>
+					<th>@Person.Email</th>
+					<th>@Person.DateOfBirth?.ToString("dd MMMM yyyy")</th>
+					<th>@Person.Age</th>
+					<th>@Person.Gender</th>
+					<th>@Person.Country</th>
+					<th>@Person.Adress</th>
+					<th>@Person.ReceiveNewsLetters</th>
+				</tr>
+			}
+
+		</tbody>
+	</table>
+
+
+
+
+
+
+	</body>
+
+</html>
