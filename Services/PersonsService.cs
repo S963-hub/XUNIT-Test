@@ -20,7 +20,7 @@ namespace Services
         public PersonsService(bool initialize = true)
         {
             _persons = new List<Person>();
-            _countriesService = new CountriesService(false);
+            _countriesService = new CountriesService(true);
             _persons.AddRange(new List<Person>()
             {
                 new Person(){
@@ -102,7 +102,7 @@ namespace Services
         }
         public List<PersonResponse> GetAllPersons()
         {
-            return _persons.Select(person => person.ToPersonResponse()).ToList();
+            return _persons.Select(temp => ConvertPerson_To_PersonResponse(temp)).ToList();
         }
         public PersonResponse? GetPersonByPersonId(Guid? personId)
         {
@@ -145,13 +145,19 @@ namespace Services
                     temp.DateOfBirth.Value.ToString("dd MMMM yyyy").Contains(SearchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
                     break;
 
-                case nameof(PersonResponse.Gender):
-                    MatchingPersons = AllPersons.Where(temp =>
-                    (!string.IsNullOrEmpty(temp.Gender)) ?
-                    temp.Gender.Contains(SearchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                    break;
+				case nameof(PersonResponse.Gender):
+					MatchingPersons = AllPersons
+						.Where(temp =>
+							!string.IsNullOrEmpty(temp.Gender) &&
+							(
+								string.Equals(SearchString, "Male", StringComparison.OrdinalIgnoreCase)
+									? string.Equals(temp.Gender, "Male", StringComparison.OrdinalIgnoreCase)
+									: temp.Gender.Contains(SearchString, StringComparison.OrdinalIgnoreCase)
+							))
+						.ToList();
+					break;
 
-                case nameof(PersonResponse.CountryId):
+				case nameof(PersonResponse.CountryId):
                     MatchingPersons = AllPersons.Where(temp =>
                     (!string.IsNullOrEmpty(temp.Country)) ?
                     temp.Country.Contains(SearchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
@@ -220,7 +226,7 @@ namespace Services
             matchingPerson.CountryId = personUpdateRequest.CountryId;
             matchingPerson.ReceiveNewsLetters = personUpdateRequest.ReceiveNewsLetters;
 
-            return matchingPerson.ToPersonResponse();
+            return ConvertPerson_To_PersonResponse(matchingPerson);
         }
         public bool DeletePerson(Guid? PersonID)
         {

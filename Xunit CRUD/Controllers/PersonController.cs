@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ServiceContracts;
 using ServiceContracts.Dto;
+using ServiceContracts.Enums;
 using Services;
 
 namespace Xunit_CRUD.Controllers
@@ -8,12 +9,15 @@ namespace Xunit_CRUD.Controllers
     public class PersonController : Controller
     {
         private readonly IPersonsService _personsService;
-        public PersonController(IPersonsService personsService)
+        private readonly ICountriesService _countriesService;
+        public PersonController(IPersonsService personsService,ICountriesService countriesService )
         {
             _personsService = personsService;
+            _countriesService = countriesService;
         }
-        public IActionResult Index(string SearchBy,string? SearchString)
+        public IActionResult Index(string SearchBy,string? SearchString, string SortBy = nameof(PersonResponse.PersonName), SortedOrderEnum sortOrder = SortedOrderEnum.ASC)
         {
+            //Search
             ViewBag.Fields = new Dictionary<string, string>()
             {
                 {nameof(PersonResponse.PersonName), "Person Name" },
@@ -24,7 +28,21 @@ namespace Xunit_CRUD.Controllers
 				{nameof(PersonResponse.Adress), "Adress" },
 			};  
             List<PersonResponse> persons =  _personsService.GetFilteretPerson(SearchBy, SearchString);
-            return View(persons);
+            ViewBag.CurrentSearchBy = SearchBy;
+            ViewBag.CurrentSearchString = SearchString;
+
+            //Sort
+            List<PersonResponse> SortedPersons = _personsService.GetSortedPersons(persons, SortBy, sortOrder);
+            ViewBag.CurrentSortBy = SortBy;
+            ViewBag.CurrentSortOrder = sortOrder;
+            return View(SortedPersons);
+        }
+
+        public IActionResult Create()
+        {
+            List<CountryResponse> countryResponses = _countriesService.GetAllCountry();
+            ViewBag.countryResponses = countryResponses;
+            return View();
         }
     }
 }
