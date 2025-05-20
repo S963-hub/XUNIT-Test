@@ -115,7 +115,7 @@ namespace Services
             if (GetPersonByPersonId_object == null)
                 return null;
 
-            return GetPersonByPersonId_object.ToPersonResponse();
+            return ConvertPerson_To_PersonResponse(GetPersonByPersonId_object);
         }
         public List<PersonResponse> GetFilteretPerson(string SearchBy, string? SearchString)
         {

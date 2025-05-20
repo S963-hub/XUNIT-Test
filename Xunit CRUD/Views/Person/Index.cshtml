@@ -11,7 +11,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Document</title>
+		<title>Index</title>
 		<link rel="stylesheet" href="~/css/PersonIndex.css" asp-append-version="true" />
 	</head>
 
@@ -46,6 +46,7 @@
 			</div>
 		</div>
 	</form>
+
 	<table>
 		<thead>
 			<tr>
@@ -53,43 +54,44 @@
 				@await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData){
 					{"ColumnName", nameof(PersonResponse.PersonName)},
 					{"DisplayName", "Person Name"}
-				});
+				})
 
 				@await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData){
 				{"ColumnName", nameof(PersonResponse.Email)},
 				{"DisplayName", "Email"}
-				});
+				})
 
 				@await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData){
 				{"ColumnName", nameof(PersonResponse.DateOfBirth)},
 				{"DisplayName", "Date of Birth"}
-				});
+				})
 
 				@await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData){
 				{"ColumnName", nameof(PersonResponse.Age)},
 				{"DisplayName", "Age"}
-				});
+				})
 
 				@await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData){
 				{"ColumnName", nameof(PersonResponse.Gender)},
 				{"DisplayName", "Gender"}
-				});
+				})
 
 				@await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData){
 				{"ColumnName", nameof(PersonResponse.Country)},
 				{"DisplayName", "Country"}
-				});	
+				})	
 				
 				@await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData){
 				{"ColumnName", nameof(PersonResponse.Adress)},
 				{"DisplayName", "Adress"}
-				});				
+				})				
 
 				@await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData){
 				{"ColumnName", nameof(PersonResponse.ReceiveNewsLetters)},
 				{"DisplayName", "Receive News Letters"}
-				});
+				})
 
+				<th style="color:var(--color-primary)">Operations</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -97,25 +99,23 @@
 			@foreach (PersonResponse Person in Model)
 			{
 				<tr>
-					<th>@Person.PersonName</th>
-					<th>@Person.Email</th>
-					<th>@Person.DateOfBirth?.ToString("dd MMMM yyyy")</th>
-					<th>@Person.Age</th>
-					<th>@Person.Gender</th>
-					<th>@Person.Country</th>
-					<th>@Person.Adress</th>
-					<th>@Person.ReceiveNewsLetters</th>
+					<td style="margin-left:50px">@Person.PersonName</td>
+					<td>@Person.Email</td>
+					<td>@Person.DateOfBirth?.ToString("dd MMMM yyyy")</td>
+					<td>@Person.Age</td>
+					<td>@Person.Gender</td>
+					<td>@Person.Country</td>
+					<td>@Person.Adress</td>
+					<td>@Person.ReceiveNewsLetters</td>
+					<td>
+						<a asp-controller="Person" asp-action="Edit" asp-route-personID=@Person.PersonID>Edit</a>
+					</td>
 				</tr>
 			}
 
 		</tbody>
 	</table>
-
-
-
-
-
-
-	</body>
+	
+</body>
 
 </html>

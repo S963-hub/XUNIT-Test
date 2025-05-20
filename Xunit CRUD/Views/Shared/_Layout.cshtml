@@ -13,15 +13,13 @@
 <body>
 
     <div class="nav-container">
-        <div class="navbar">Crud Demo</div>
-        <ul>
-            <li>
-                <a asp-controller="Person" asp-action="Create">Create Person</a>
-            </li>
-
-            <li>
-                <a asp-controller="Person" asp-action="Index">Persons</a>
-            </li>
+        <div class="logo-title">
+            <img src="~/Screenshot 2025-05-20 173628.png" alt="Logo">
+            <h1 class="site-title">Crud Demo</h1>
+        </div>
+        <ul class="nav-menu">
+            <li><a asp-controller="Person" asp-action="Create">Create Person</a></li>
+            <li><a asp-controller="Person" asp-action="Index">Persons</a></li>
         </ul>
     </div>
     <div class="container">

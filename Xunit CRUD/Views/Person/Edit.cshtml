@@ -1,13 +1,13 @@
 ﻿@using ServiceContracts.Dto
 @using ServiceContracts.Enums
 
-@model PersonAddRequest
+@model PersonUpdateRequest
 
 @{
-    ViewBag.Title = "Create Person";
+    ViewBag.Title = "Edit Person";
 }
 
-<h2>Create Person</h2>
+<h2>Edir Person</h2>
 
 <form method="post" class="mt-4">
 
@@ -19,13 +19,13 @@
 
     <div class="mb-3">
         <label for="Email" class="form-label">Email</label>
-        <input asp-for="Email" class="form-control"/>
+        <input asp-for="Email" class="form-control" />
         <span asp-validation-for="Email" class="span"></span>
     </div>
 
     <div class="mb-3">
         <label for="DateOfBirth" class="form-label">Date of Birth</label>
-        <input asp-for="DateOfBirth" class="form-control"/>
+        <input asp-for="DateOfBirth" class="form-control" />
         <span asp-validation-for="DateOfBirth" class="span"></span>
     </div>
 
@@ -33,28 +33,34 @@
         <label class="form-label">Gender</label>
         <div class="form-check">
 
-        @{
-            string[] genders = (string[])Enum.GetNames(typeof(GenderOptions));
-        }
+            @{
+                string[] genders = (string[])Enum.GetNames(typeof(GenderOptions));
+            }
 
-        @foreach(var gender in genders)
-        {
+            @foreach (var gender in genders)
+            {
                 <input type="radio" asp-for="Gender" value="@gender" />
                 <label for="@gender">@gender</label>
-        }
+            }
             <span asp-validation-for="Gender" class="span"></span>
         </div>
 
 
     </div>
 
+    @*Country*@
     <div class="mb-3">
-        <label for="CountryId" class="form-label">Country</label>
-        <select class="form-select" asp-items="@ViewBag.countries">
-            <option value="">-- Select Country --</option>
-        </select>
-        <span asp-validation-for="CountryId" class="span"></span>
-    </div>
+
+    <label class="form-label">Country</label>
+
+        <div class="flex-1">
+            <select asp-for="CountryId" class="form-input" asp-items="@ViewBag.countries">
+                <option value="">Please Select</option>
+            </select>
+            <span asp-validation-for="CountryId" class="text-red"></span>
+        </div>
+        </div>
+
 
     <div class="mb-3">
         <label asp-for="Adress" class="form-label">Address</label>
@@ -70,7 +76,7 @@
 
     </div>
 
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-primary">Edit</button>
     @if (ViewBag.Errors != null)
     {
         <div class="text-red ml">
@@ -86,7 +92,7 @@
 </form>
 
 <style>
-    .span{
+    .span {
         color: red;
     }
 </style>

@@ -14,9 +14,11 @@ namespace ServiceContracts.Dto
         public string? PersonName { get; set; }
 
         [Required(ErrorMessage = "Email can't to be blank")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Geçerli bir e-posta adresi giriniz.")]
+        [DataType(DataType.EmailAddress)]
         public string? Email { get; set; }
         public GenderOptions? Gender { get; set; }
+        [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
         public string? Adress { get; set; }
         public Guid? CountryId { get; set; }
@@ -27,6 +29,7 @@ namespace ServiceContracts.Dto
             return new Person
             {
                 PersonName = PersonName,
+                Email = Email,
                 Gender = Gender.ToString(),
                 DateOfBirth = DateOfBirth,
                 Adress = Adress,

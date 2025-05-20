@@ -58,6 +58,7 @@ namespace ServiceContracts.Dto
                 PersonName = PersonName,
                 Email = Email,
                 Gender = (GenderOptions)Enum.Parse(typeof(GenderOptions), Gender, true),
+                DateOfBirth = DateOfBirth,
                 Adress = Adress,
                 CountryId = CountryId,
                 ReceiveNewsLetters = ReceiveNewsLetters,

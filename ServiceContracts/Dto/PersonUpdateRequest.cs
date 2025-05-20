@@ -11,20 +11,22 @@ namespace ServiceContracts.Dto
 {
     public class PersonUpdateRequest
     {
-        public Guid? PersonID { get; set; }
+		public Guid? PersonID { get; set; }
 
-        [Required(ErrorMessage = "Person Name can't to be blank")]
-        public string? PersonName { get; set; }
+		[Required(ErrorMessage = "Person Name can't to be blank")]
+		public string? PersonName { get; set; }
 
-        [Required(ErrorMessage = "Email can't to be blank")]
-        [EmailAddress]
-        public string? Email { get; set; }
-        public GenderOptions? Gender { get; set; }
-        public DateTime? DateOfBirth { get; set; }
-        public string? Adress { get; set; }
-        public Guid? CountryId { get; set; }
-        public bool ReceiveNewsLetters { get; set; }
-        public Person ToPerson()
+		[Required(ErrorMessage = "Email can't to be blank")]
+		[EmailAddress(ErrorMessage = "Geçerli bir e-posta adresi giriniz.")]
+		[DataType(DataType.EmailAddress)]
+		public string? Email { get; set; }
+		public GenderOptions? Gender { get; set; }
+		[DataType(DataType.Date)]
+		public DateTime? DateOfBirth { get; set; }
+		public string? Adress { get; set; }
+		public Guid? CountryId { get; set; }
+		public bool ReceiveNewsLetters { get; set; }
+		public Person ToPerson()
         {
             return new Person
             {
