@@ -52,9 +52,7 @@ body {
   border-radius: var(--border-radius);
   transition: background var(--transition);
 }
-.nav-menu a:hover {
-  background: darken(var(--muted-color), 10%);
-}
+
 
 /* === FILTER BAR === */
 .flex {
@@ -97,16 +95,47 @@ button {
   background: var(--accent-color);
   color: var(--header-text);
 }
-button:hover {
-  background: darken(var(--accent-color), 10%);
-}
+
 a[asp-controller][asp-action] {
   background: var(--muted-color);
   color: var(--header-text);
 }
-a[asp-controller][asp-action]:hover {
-  background: darken(var(--muted-color), 10%);
+
+
+/* Buton benzeri linkler için ortak stil */
+.action-btn {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
+
+/* Edit butonu */
+.edit-btn {
+    background-color: #28a745; /* yeşil */
+    color: #fff;
+    border: 1px solid #28a745;
+}
+
+    .edit-btn:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+/* Delete butonu */
+.delete-btn {
+    background-color: #dc3545; /* kırmızı */
+    color: #fff;
+    border: 1px solid #dc3545;
+}
+
+    .delete-btn:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
 
 /* === TABLE STYLING === */
 table {
@@ -146,9 +175,7 @@ a.edit-link {
   border-radius: var(--border-radius);
   text-decoration: none;
 }
-a.edit-link:hover {
-  background: darken(var(--accent-color), 10%);
-}
+
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {

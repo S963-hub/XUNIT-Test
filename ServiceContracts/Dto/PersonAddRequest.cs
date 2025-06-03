@@ -20,8 +20,8 @@ namespace ServiceContracts.Dto
         public GenderOptions? Gender { get; set; }
         [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
-        public string? Adress { get; set; }
-        public Guid? CountryId { get; set; }
+        public string? Address { get; set; }
+        public Guid? CountryID { get; set; }
         public bool ReceiveNewsLetters { get; set; }
 
         public Person ToPerson()
@@ -32,8 +32,8 @@ namespace ServiceContracts.Dto
                 Email = Email,
                 Gender = Gender.ToString(),
                 DateOfBirth = DateOfBirth,
-                Adress = Adress,
-                CountryId = CountryId,
+                Address = Address,
+                CountryID = CountryID,
                 ReceiveNewsLetters = ReceiveNewsLetters
             };
         }
@@ -41,7 +41,7 @@ namespace ServiceContracts.Dto
         {
             return $"Perosn ID : {PersonID}, person name : {PersonName}" +
                 $"  , Gender : {Gender} , Date of birth : {DateOfBirth?.ToString("dd MMMM yyyy")} " +
-                $" CountryID : {CountryId} , Adress : {Adress} , Receive News Letters : {ReceiveNewsLetters} ";
+                $" CountryID : {CountryID} , Adress : {Address} , Receive News Letters : {ReceiveNewsLetters} ";
         }
     }
 }

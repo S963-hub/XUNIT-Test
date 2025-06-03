@@ -11,6 +11,7 @@ using ServiceContracts.Enums;
 using Entities;
 using Xunit.Abstractions;
 using Xunit.Sdk;
+using Microsoft.EntityFrameworkCore;
 
 namespace Tests
 {
@@ -19,10 +20,12 @@ namespace Tests
         private readonly IPersonsService _personService;
         private readonly ICountriesService _countriesService;
         private readonly ITestOutputHelper _outputHelper;
-        public PersonsServiceTest(ITestOutputHelper testOutputHelper)
+        public PersonsServiceTest(ITestOutputHelper testOutputHelper, IPersonsService personService, ICountriesService countriesService)
         {
-            _personService = new PersonsService();
-            _countriesService = new CountriesService();
+            _countriesService = new CountriesService(new PersonDbContext(new DbContextOptionsBuilder<PersonDbContext>().Options));
+
+            _personService = new PersonsService(new PersonDbContext(new DbContextOptionsBuilder<PersonDbContext>().Options), _countriesService);
+
             _outputHelper = testOutputHelper;
         }
 
@@ -67,7 +70,7 @@ namespace Tests
             PersonAddRequest? request3 = new PersonAddRequest()
             {
                 PersonName = "subhi",
-                Adress = "syria"
+                Address = "syria"
             };
 
             //Act
@@ -109,8 +112,8 @@ namespace Tests
                 PersonName = "subhi",
                 Gender = GenderOptions.Male,
                 DateOfBirth = DateTime.Parse("01.01.2004"),
-                Adress = "Aleppo",
-                CountryId = response_Country_Name.CountryID,
+                Address = "Aleppo",
+                CountryID = response_Country_Name.CountryID,
                 ReceiveNewsLetters = true,
             };
             PersonResponse PersonResponse2 = _personService.AddPerson(personAddRequest);
@@ -149,8 +152,8 @@ namespace Tests
                 PersonName = "subhi",
                 Gender = GenderOptions.Male,
                 DateOfBirth = DateTime.Parse("01.01.2001"),
-                Adress = "Homs",
-                CountryId = countryResponse2.CountryID,
+                Address = "Homs",
+                CountryID = countryResponse2.CountryID,
                 ReceiveNewsLetters = true,
             };
             PersonAddRequest request2 = new PersonAddRequest()
@@ -158,8 +161,8 @@ namespace Tests
                 PersonName = "ahmet",
                 Gender = GenderOptions.Male,
                 DateOfBirth = DateTime.Parse("01.01.2002"),
-                Adress = "syria",
-                CountryId = countryResponse1.CountryID,
+                Address = "syria",
+                CountryID = countryResponse1.CountryID,
                 ReceiveNewsLetters = true,
             };
             PersonAddRequest request3 = new PersonAddRequest()
@@ -167,8 +170,8 @@ namespace Tests
                 PersonName = "muhammed",
                 Gender = GenderOptions.Male,
                 DateOfBirth = DateTime.Parse("01.01.2003"),
-                Adress = "halep",
-                CountryId = countryResponse2.CountryID,
+                Address = "halep",
+                CountryID = countryResponse2.CountryID,
                 ReceiveNewsLetters = true,
             };
 
@@ -227,8 +230,8 @@ namespace Tests
                 PersonName = "subhi",
                 Gender = GenderOptions.Male,
                 DateOfBirth = DateTime.Parse("01.01.2001"),
-                Adress = "Homs",
-                CountryId = countryResponse2.CountryID,
+                Address = "Homs",
+                CountryID = countryResponse2.CountryID,
                 ReceiveNewsLetters = true,
             };
             PersonAddRequest request2 = new PersonAddRequest()
@@ -236,8 +239,8 @@ namespace Tests
                 PersonName = "ahmet",
                 Gender = GenderOptions.Male,
                 DateOfBirth = DateTime.Parse("01.01.2002"),
-                Adress = "syria",
-                CountryId = countryResponse1.CountryID,
+                Address = "syria",
+                CountryID = countryResponse1.CountryID,
                 ReceiveNewsLetters = true,
             };
             PersonAddRequest request3 = new PersonAddRequest()
@@ -245,8 +248,8 @@ namespace Tests
                 PersonName = "muhammed",
                 Gender = GenderOptions.Male,
                 DateOfBirth = DateTime.Parse("01.01.2003"),
-                Adress = "halep",
-                CountryId = countryResponse2.CountryID,
+                Address = "halep",
+                CountryID = countryResponse2.CountryID,
                 ReceiveNewsLetters = true,
             };
 
@@ -288,8 +291,8 @@ namespace Tests
                 PersonName = "subhi",
                 Gender = GenderOptions.Male,
                 DateOfBirth = DateTime.Parse("01.01.2001"),
-                Adress = "Homs",
-                CountryId = countryResponse2.CountryID,
+                Address = "Homs",
+                CountryID = countryResponse2.CountryID,
                 ReceiveNewsLetters = true,
             };
             PersonAddRequest request2 = new PersonAddRequest()
@@ -297,8 +300,8 @@ namespace Tests
                 PersonName = "ahmet",
                 Gender = GenderOptions.Male,
                 DateOfBirth = DateTime.Parse("01.01.2002"),
-                Adress = "syria",
-                CountryId = countryResponse1.CountryID,
+                Address = "syria",
+                CountryID = countryResponse1.CountryID,
                 ReceiveNewsLetters = true,
             };
             PersonAddRequest request3 = new PersonAddRequest()
@@ -306,8 +309,8 @@ namespace Tests
                 PersonName = "muhammed",
                 Gender = GenderOptions.Male,
                 DateOfBirth = DateTime.Parse("01.01.2003"),
-                Adress = "halep",
-                CountryId = countryResponse2.CountryID,
+                Address = "halep",
+                CountryID = countryResponse2.CountryID,
                 ReceiveNewsLetters = true,
             };
 
@@ -362,8 +365,8 @@ namespace Tests
                 PersonName = "subhi",
                 Gender = GenderOptions.Male,
                 DateOfBirth = DateTime.Parse("01.01.2001"),
-                Adress = "Homs",
-                CountryId = countryResponse2.CountryID,
+                Address = "Homs",
+                CountryID = countryResponse2.CountryID,
                 ReceiveNewsLetters = true,
             };
             PersonAddRequest request2 = new PersonAddRequest()
@@ -371,8 +374,8 @@ namespace Tests
                 PersonName = "ahmet",
                 Gender = GenderOptions.Male,
                 DateOfBirth = DateTime.Parse("01.01.2002"),
-                Adress = "syria",
-                CountryId = countryResponse1.CountryID,
+                Address = "syria",
+                CountryID = countryResponse1.CountryID,
                 ReceiveNewsLetters = true,
             };
             PersonAddRequest request3 = new PersonAddRequest()
@@ -380,8 +383,8 @@ namespace Tests
                 PersonName = "muhammed",
                 Gender = GenderOptions.Male,
                 DateOfBirth = DateTime.Parse("01.01.2003"),
-                Adress = "halep",
-                CountryId = countryResponse2.CountryID,
+                Address = "halep",
+                CountryID = countryResponse2.CountryID,
                 ReceiveNewsLetters = true,
             };
 
@@ -459,10 +462,10 @@ namespace Tests
             PersonAddRequest personAddRequest = new PersonAddRequest()
             {
                 PersonName = "subhi",
-                CountryId = countryResponse_from_add.CountryID,
+                CountryID = countryResponse_from_add.CountryID,
                 DateOfBirth = DateTime.Parse("01.01.2001"),
                 Gender = GenderOptions.Male,
-                Adress = "Homs",
+                Address = "Homs",
                 ReceiveNewsLetters = true,
             };
             PersonResponse personResponse_from_add = _personService.AddPerson(personAddRequest);
@@ -488,11 +491,11 @@ namespace Tests
             PersonAddRequest personAddRequest = new PersonAddRequest()
             {
                 PersonName = "subhi",
-                CountryId = countryResponse_from_add.CountryID,
+                CountryID = countryResponse_from_add.CountryID,
                 Email = "subhi@gmail.com",
                 Gender = GenderOptions.Male,
                 DateOfBirth = DateTime.Parse("2004-01-01"),
-                Adress = "syria",
+                Address = "syria",
                 ReceiveNewsLetters = true,
             };
             PersonResponse personResponse_from_add = _personService.AddPerson(personAddRequest);
@@ -503,7 +506,7 @@ namespace Tests
 
             //Act
             PersonResponse person_response_from_update = _personService.UpdatePerson(personUpdateRequest);
-            PersonResponse person_response_from_get = _personService.GetPersonByPersonId(personResponse_from_add.PersonID);
+            PersonResponse? person_response_from_get = _personService.GetPersonByPersonId(personResponse_from_add.PersonID);
 
             //Assert
             Assert.Equal(person_response_from_update, person_response_from_get);
@@ -523,11 +526,11 @@ namespace Tests
             {
                 PersonName = "subhi",
                 Email = "subhi@example.com",
-                Adress = "Halep",
+                Address = "Halep",
                 ReceiveNewsLetters = true,
                 Gender = GenderOptions.Male,
                 DateOfBirth = DateTime.Parse("2000-01-01"),
-                CountryId = countryResponse.CountryID
+                CountryID = countryResponse.CountryID
             };
             PersonResponse personResponse = _personService.AddPerson(personAddRequest);
 

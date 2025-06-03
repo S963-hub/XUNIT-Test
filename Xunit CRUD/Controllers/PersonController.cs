@@ -27,7 +27,7 @@ namespace Xunit_CRUD.Controllers
 				{nameof(PersonResponse.Gender), "Gender" },
 				{nameof(PersonResponse.DateOfBirth), "Date of birth" },
 				{nameof(PersonResponse.Country), "Country" },
-				{nameof(PersonResponse.Adress), "Adress" },
+				{nameof(PersonResponse.Address), "Adress" },
 			};  
             List<PersonResponse> persons =  _personsService.GetFilteretPerson(SearchBy, SearchString);
             ViewBag.CurrentSearchBy = SearchBy;
@@ -84,7 +84,6 @@ namespace Xunit_CRUD.Controllers
             return View(personUpdateRequest);
         }
 
-
         [HttpPost]
         public IActionResult Edit(PersonUpdateRequest personUpdateRequest)
         {
@@ -107,7 +106,23 @@ namespace Xunit_CRUD.Controllers
                 ViewBag.Errors = ModelState.Values.SelectMany(t => t.Errors).ToList();
                 return View();
             }
-
         }
-    }
+
+        [HttpGet]
+        public IActionResult Delete(Guid PersonID)
+        {
+            PersonResponse? response = _personsService.GetPersonByPersonId(PersonID);
+            if (response == null)
+            {
+                return RedirectToAction("Index", "Person");
+            }
+            return View(response);
+        }
+		[HttpPost]
+		public IActionResult Delete(PersonResponse personResponse)
+		{
+            _personsService.DeletePerson(personResponse.PersonID);
+            return RedirectToAction("Index");
+		}
+	}
 }

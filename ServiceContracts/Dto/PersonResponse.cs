@@ -13,8 +13,8 @@ namespace ServiceContracts.Dto
         public string? Email { get; set; }
         public string? Gender { get; set; }
         public DateTime? DateOfBirth { get; set; }
-        public string? Adress { get; set; }
-        public Guid? CountryId { get; set; }
+        public string? Address { get; set; }
+        public Guid? CountryID { get; set; }
         public string? Country { get; set; }
         public double? Age { get; set; }
         public bool ReceiveNewsLetters { get; set; }
@@ -33,8 +33,8 @@ namespace ServiceContracts.Dto
                 Email == person.Email &&
                 Gender == person.Gender &&
                 DateOfBirth == person.DateOfBirth &&
-                CountryId == person.CountryId &&
-                Adress == person.Adress &&
+                CountryID == person.CountryID &&
+                Address == person.Address &&
                 ReceiveNewsLetters == person.ReceiveNewsLetters;
         }
 
@@ -47,7 +47,7 @@ namespace ServiceContracts.Dto
         {
             return $"Perosn ID : {PersonID}, person name : {PersonName}" +
                 $" , Email : {Email} , Gender : {Gender} , Date of birth : {DateOfBirth?.ToString("dd MMMM yyyy")} " +
-                $" CountryID : {CountryId} , Adress : {Adress} , Receive News Letters : {ReceiveNewsLetters} ";
+                $" CountryID : {CountryID} , Adress : {Address} , Receive News Letters : {ReceiveNewsLetters} ";
         }
 
         public PersonUpdateRequest ToPersonUpdateRequest()
@@ -59,8 +59,8 @@ namespace ServiceContracts.Dto
                 Email = Email,
                 Gender = (GenderOptions)Enum.Parse(typeof(GenderOptions), Gender, true),
                 DateOfBirth = DateOfBirth,
-                Adress = Adress,
-                CountryId = CountryId,
+                Address = Address,
+                CountryID = CountryID,
                 ReceiveNewsLetters = ReceiveNewsLetters,
 
             };
@@ -78,11 +78,11 @@ namespace ServiceContracts.Dto
             {
                 PersonID = person.PersonID,
                 PersonName = person.PersonName,
-                Adress = person.Adress,
+                Address = person.Address,
                 Email = person.Email,
                 Gender = person.Gender,
                 DateOfBirth = person.DateOfBirth,
-                CountryId = person.CountryId,
+                CountryID = person.CountryID,
                 ReceiveNewsLetters = person.ReceiveNewsLetters,
                 Age = (person.DateOfBirth != null) ? Math.Round
                 ((DateTime.Now - person.DateOfBirth.Value).TotalDays / 365.25) : null

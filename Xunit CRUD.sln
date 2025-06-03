@@ -7,11 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xunit CRUD", "Xunit CRUD\Xu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{6BDEFB83-946B-4E68-87C4-B4DE3AA326E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{5F09176D-F443-4D52-BD2F-BFC93E89C1A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{5F09176D-F443-4D52-BD2F-BFC93E89C1A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceContracts", "ServiceContracts\ServiceContracts.csproj", "{EB416845-3338-4D2A-A539-46E031FCD618}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceContracts", "ServiceContracts\ServiceContracts.csproj", "{EB416845-3338-4D2A-A539-46E031FCD618}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{F8F279A0-D186-45AA-B3CF-326D45C2FA5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{F8F279A0-D186-45AA-B3CF-326D45C2FA5E}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database1", "..\Database1\Database1.sqlproj", "{3CF98439-2774-4140-BB96-22DC9D10A5DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,12 @@ Global
 		{F8F279A0-D186-45AA-B3CF-326D45C2FA5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8F279A0-D186-45AA-B3CF-326D45C2FA5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8F279A0-D186-45AA-B3CF-326D45C2FA5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CF98439-2774-4140-BB96-22DC9D10A5DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CF98439-2774-4140-BB96-22DC9D10A5DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CF98439-2774-4140-BB96-22DC9D10A5DF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3CF98439-2774-4140-BB96-22DC9D10A5DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CF98439-2774-4140-BB96-22DC9D10A5DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CF98439-2774-4140-BB96-22DC9D10A5DF}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

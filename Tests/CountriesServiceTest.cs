@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities;
+using Microsoft.EntityFrameworkCore;
 using ServiceContracts;
 using ServiceContracts.Dto;
 using Services;
@@ -15,7 +17,7 @@ namespace Tests
 
         public CountriesServiceTest()
         {
-            _CountryServise = new CountriesService();
+            _CountryServise = new CountriesService(new PersonDbContext(new DbContextOptionsBuilder<PersonDbContext>().Options));
         }
 
         #region Add Country

@@ -82,7 +82,7 @@
 				})	
 				
 				@await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData){
-				{"ColumnName", nameof(PersonResponse.Adress)},
+				{"ColumnName", nameof(PersonResponse.Address)},
 				{"DisplayName", "Adress"}
 				})				
 
@@ -90,9 +90,10 @@
 				{"ColumnName", nameof(PersonResponse.ReceiveNewsLetters)},
 				{"DisplayName", "Receive News Letters"}
 				})
-
 				<th style="color:var(--color-primary)">Operations</th>
+
 			</tr>
+
 		</thead>
 		<tbody>
 
@@ -105,10 +106,12 @@
 					<td>@Person.Age</td>
 					<td>@Person.Gender</td>
 					<td>@Person.Country</td>
-					<td>@Person.Adress</td>
+					<td>@Person.Address</td>
 					<td>@Person.ReceiveNewsLetters</td>
 					<td>
-						<a asp-controller="Person" asp-action="Edit" asp-route-personID=@Person.PersonID>Edit</a>
+						<a asp-controller="Person" asp-action="Edit" asp-route-personID="@Person.PersonID" class="action-btn edit-btn">Edit</a>
+						<br>
+						<a asp-controller="Person" asp-action="Delete" asp-route-personID="@Person.PersonID" class="action-btn delete-btn">Delete</a>
 					</td>
 				</tr>
 			}
